@@ -1,39 +1,45 @@
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VP Sisaked Booking System</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        .responsive-iframe {
-            width: 100%;
+        body,
+        html {
             height: 100%;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            /* Prevent parent scrolling */
+        }
+
+        .responsive-iframe {
+            width: 100vw;
+            height: 100vh;
             border: none;
             display: block;
         }
     </style>
 </head>
-<body class="bg-gray-100 min-h-screen flex flex-col">
-    <main class="flex-grow p-4 md:p-8 flex justify-center">
-        <!-- Container allows dynamic height growth -->
-        <div class="w-full max-w-4xl bg-white rounded-lg shadow-lg overflow-hidden">
-            <iframe 
-                id="myApp"
-                src="https://script.google.com/macros/s/AKfycbz73pLYSk4U34Cn4Y2LTgJYVpRjY0bQj-8gyWAKyGQ_uYZFSpvBtfKlNu8epG6FMg8Q/exec" 
-                class="responsive-iframe"
-                title="VP Sisaked Booking System"
-                allowfullscreen>
-            </iframe>
-        </div>
-    </main>
+
+<body>
+    <iframe id="myApp"
+        src="https://script.google.com/macros/s/AKfycbz73pLYSk4U34Cn4Y2LTgJYVpRjY0bQj-8gyWAKyGQ_uYZFSpvBtfKlNu8epG6FMg8Q/exec"
+        class="responsive-iframe" title="VP Sisaked Booking System" allowfullscreen>
+    </iframe>
+
     <script>
-        // Listen for height messages from the Google Apps Script
-        window.addEventListener('message', function(event) {
+        // Listen for height messages from the Google Apps Script if dynamic adjustment is needed
+        window.addEventListener('message', function (event) {
             if (event.data && event.data.type === 'resize') {
                 document.getElementById('myApp').style.height = event.data.height + 'px';
             }
         }, false);
     </script>
 </body>
+
 </html>
